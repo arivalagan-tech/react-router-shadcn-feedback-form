@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+
+.navbar {
+  @apply flex gap-6 p-4 border-b;
+}
+
+.nav-link {
+  @apply text-sm font-medium;
+}

@@ -5,10 +5,13 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
+  Link,
 } from "react-router"
 
 import type { Route } from "./+types/root"
 import "./app.css"
+import "./styles/navigation.css"
+import Navbar from "./components/layout/Navbar"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,6 +23,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Navbar />
+
         {children}
         <ScrollRestoration />
         <Scripts />

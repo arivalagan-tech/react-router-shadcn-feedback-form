@@ -1,0 +1,41 @@
+@reference "tailwindcss";
+
+@layer components {
+
+  .feedback-container {
+    @apply max-w-lg mx-auto mt-10;
+  }
+
+  .form-group {
+    @apply mb-4 flex flex-col gap-1;
+  }
+
+  .form-error {
+    @apply text-red-500 text-sm mt-1;
+  }
+
+  .success-message {
+    @apply text-green-600 text-sm mb-4;
+  }
+
+  .popup-overlay {
+    @apply fixed inset-0 bg-black/40 flex items-center justify-center z-50;
+  }
+
+  .popup-box {
+    @apply bg-white rounded-lg shadow-lg p-6 w-[350px] text-center;
+  }
+
+  .popup-title {
+    @apply text-lg font-semibold mb-2;
+  }
+
+  .popup-text {
+    @apply text-green-600 mb-4;
+  }
+
+  .popup-button {
+    @apply px-4 py-2 rounded-md bg-black text-white cursor-pointer;
+  }
+
+}
