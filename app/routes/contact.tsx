@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react"
 
+import "../styles/form.css"
+
+
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { Textarea } from "../components/ui/textarea"
