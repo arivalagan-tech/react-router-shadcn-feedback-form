@@ -1,41 +1,71 @@
 @reference "tailwindcss";
 
 @layer components {
+  /* -------------------------
+     COMMON (SHARED)
+  ------------------------- */
 
   .feedback-container {
-    @apply max-w-lg mx-auto mt-10;
+    @apply mx-auto mt-10 max-w-lg;
   }
 
   .form-group {
-    @apply mb-4 flex flex-col gap-1;
+    @apply mb-4 flex flex-col gap-2;
   }
 
   .form-error {
-    @apply text-red-500 text-sm mt-1;
+    @apply mt-1 text-sm text-red-500;
   }
 
   .success-message {
-    @apply text-green-600 text-sm mb-4;
+    @apply mb-4 text-sm text-green-600;
   }
 
+  /* -------------------------
+     POPUP (FEEDBACK)
+  ------------------------- */
+
   .popup-overlay {
-    @apply fixed inset-0 bg-black/40 flex items-center justify-center z-50;
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/40;
   }
 
   .popup-box {
-    @apply bg-white rounded-lg shadow-lg p-6 w-[350px] text-center;
+    @apply w-[350px] rounded-lg bg-white p-6 text-center shadow-lg;
   }
 
   .popup-title {
-    @apply text-lg font-semibold mb-2;
+    @apply mb-2 text-lg font-semibold;
   }
 
   .popup-text {
-    @apply text-green-600 mb-4;
+    @apply mb-4 text-green-600;
   }
 
   .popup-button {
-    @apply px-4 py-2 rounded-md bg-black text-white cursor-pointer;
+    @apply cursor-pointer rounded-md bg-black px-4 py-2 text-white;
   }
 
+  /* -------------------------
+     CONTACT PAGE
+  ------------------------- */
+
+  .contact-container {
+    @apply mx-auto mt-10 max-w-lg;
+  }
+
+  .contact-card {
+    @apply w-full max-w-xl rounded-2xl border bg-white shadow-xl;
+  }
+
+  .status-text {
+    @apply mt-3 text-sm text-green-600 transition-all duration-300;
+  }
+
+  .status-error {
+    @apply mt-3 text-sm text-red-500;
+  }
+
+  .submit-button {
+    @apply mt-2;
+  }
 }

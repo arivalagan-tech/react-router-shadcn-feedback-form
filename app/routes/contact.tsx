@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card"
 import { Input } from "../components/ui/input"
@@ -15,6 +15,19 @@ export default function Contact() {
   })
 
   const [status, setStatus] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  // ✅ Auto clear message after 3 seconds
+  useEffect(() => {
+    if (status) {
+      const timer = setTimeout(() => {
+        setStatus("")
+      }, 3000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [status])
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -23,9 +36,11 @@ export default function Contact() {
     })
   }
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    setLoading(true)
     setStatus("Submitting...")
 
     try {
@@ -49,13 +64,17 @@ export default function Contact() {
     } catch (error) {
       console.error(error)
       setStatus("❌ Error sending data")
+    } finally {
+      setLoading(false)
     }
   }
 
-  return (
-    <div className="feedback-container">
 
-      <Card>
+  return (
+    <div className="contact-container">
+
+      <Card className="contact-card">
+
         <CardHeader>
           <CardTitle>Contact Form (Google Sheets)</CardTitle>
         </CardHeader>
@@ -66,28 +85,52 @@ export default function Contact() {
 
             <div className="form-group">
               <Label>Name</Label>
-              <Input name="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
+              <Input
+                name="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="form-group">
               <Label>Email</Label>
-              <Input name="email" type="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
+              <Input
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="form-group">
               <Label>Message</Label>
-              <Textarea name="message" placeholder="Whats on you are mind today...!" value={formData.message} onChange={handleChange} required />
+              <Textarea
+                name="message"
+                placeholder="What's on your mind today?"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
             </div>
 
-            <Button type="submit">
-              Submit to Google Sheet
+            <Button type="submit" className="submit-button" disabled={loading}>
+              {loading ? "Sending..." : "Send Message"}
             </Button>
 
           </form>
 
-          <p>{status}</p>
+          {status && (
+            <p className={status.includes("Error") ? "status-error" : "status-text"}>
+              {status}
+            </p>
+          )}
 
         </CardContent>
+
       </Card>
 
     </div>
