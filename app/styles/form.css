@@ -69,3 +69,51 @@
     @apply mt-2;
   }
 }
+
+/* BLOG LIST here*/
+
+.blogs-container {
+  @apply mx-auto mt-10 max-w-6xl px-4;
+}
+
+.blogs-title {
+  @apply mb-6 text-center text-2xl font-bold;
+}
+
+.blogs-grid {
+  @apply grid gap-6 md:grid-cols-3;
+}
+
+.blog-card {
+  @apply cursor-pointer rounded-xl border p-4 shadow-sm transition-all duration-300 hover:shadow-lg;
+}
+
+.blog-title {
+  @apply mb-2 text-lg font-semibold;
+}
+
+.blog-author {
+  @apply mb-2 text-sm text-gray-500;
+}
+
+.blog-content {
+  @apply line-clamp-3 text-sm text-gray-600;
+}
+
+/* BLOG DETAIL here */
+
+.blog-detail-container {
+  @apply mx-auto mt-10 max-w-2xl px-4;
+}
+
+.blog-detail-title {
+  @apply mb-4 text-2xl font-bold;
+}
+
+.blog-detail-author {
+  @apply mb-4 text-sm text-gray-500;
+}
+
+.blog-detail-content {
+  @apply text-base text-gray-700;
+}

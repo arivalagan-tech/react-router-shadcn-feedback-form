@@ -1,9 +1,23 @@
 @reference "tailwindcss";
 
-.navbar {
-  @apply flex gap-6 p-4 border-b;
-}
+@layer components {
+  .navbar {
+    @apply flex items-center justify-center gap-3 border-b py-4;
+  }
 
-.nav-link {
-  @apply text-sm font-medium;
+  .nav-link {
+    @apply text-sm font-medium text-gray-600 transition-all duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-black;
+  }
+
+  .active {
+    @apply text-black underline underline-offset-4;
+  }
+
+  .separator {
+    @apply text-gray-400;
+  }
 }
