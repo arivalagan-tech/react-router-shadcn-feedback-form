@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 
+import "../styles/form.css"
+
 export default function BlogDetail() {
 
   const { id } = useParams() // ✅ get documentId from URL

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 
+import "../styles/form.css"
+
 export default function Blogs() {
 
   const [blogs, setBlogs] = useState([])
