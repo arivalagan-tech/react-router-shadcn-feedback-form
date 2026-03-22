@@ -1,25 +1,30 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
-
-import "../styles/form.css"
+import { useBlog } from "../context/BlogContext"
 
 export default function BlogDetail() {
 
-  const { id } = useParams() // ✅ get documentId from URL
-  const [blog, setBlog] = useState<any>(null)
+  const { id } = useParams()
+  const { activeBlog, setActiveBlog } = useBlog()
+
+  const [blog, setBlog] = useState<any>(activeBlog)
 
   useEffect(() => {
-    if (!id) return
 
-    fetch(`https://nems-api.roundlogics.com/api/blogs/${id}?populate=*`)
-      .then(res => res.json())
-      .then(data => {
-        setBlog(data.data)
-      })
-      .catch(err => console.error(err))
+    // ✅ If context empty → fallback API call
+    if (!activeBlog && id) {
+      fetch(`https://nems-api.roundlogics.com/api/blogs/${id}?populate=*`)
+        .then(res => res.json())
+        .then(data => {
+          setBlog(data.data)
+          setActiveBlog(data.data) // store again in context
+        })
+        .catch(err => console.error(err))
+    }
 
-  }, [id])
+  }, [id, activeBlog, setActiveBlog])
 
+  // ✅ if blog still empty
   if (!blog) {
     return <p>Loading...</p>
   }

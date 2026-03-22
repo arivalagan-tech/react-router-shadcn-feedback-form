@@ -12,6 +12,7 @@ import type { Route } from "./+types/root"
 import "./app.css"
 import "./styles/navigation.css"
 import Navbar from "./components/layout/Navbar"
+import { BlogProvider } from "./context/BlogContext"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,7 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />
+  return (
+    <BlogProvider>
+      <Outlet />
+    </BlogProvider>
+  )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
