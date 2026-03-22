@@ -7,8 +7,10 @@ import "../styles/form.css"
 export default function BlogDetail() {
   const { id } = useParams()
   const { activeBlog, setActiveBlog } = useBlog()
+  console.log("Active blog:", activeBlog)
 
   const [blog, setBlog] = useState<any>(activeBlog)
+  console.log("Final blog state:", blog)
 
   useEffect(() => {
     // ✅ If context empty → fallback API call
@@ -22,19 +24,44 @@ export default function BlogDetail() {
         .catch((err) => console.error(err))
     }
   }, [id, activeBlog, setActiveBlog])
+  
 
   // ✅ if blog still empty
   if (!blog) {
-    return <p>Loading...</p>
+    return <p className="mt-10 text-center">Loading...</p>
   }
 
   return (
     <div className="blog-detail-container">
-      <h1 className="blog-detail-title">{blog.Cover_Title}</h1>
+      {/*  IMAGE */}
+      <img
+        src={`https://nems-api.roundlogics.com${blog.Cover_Picture?.url}`}
+        alt={blog.Cover_Title}
+        className="blog-detail-image"
+      />
 
-      <p className="blog-detail-author">By {blog.Author_Name}</p>
+      <div className="blog-detail-content">
+        {/*  TITLE */}
+        <h1 className="blog-detail-title">{blog.Cover_Title}</h1>
 
-      <p className="blog-detail-content">{blog.Content}</p>
+        {/*  AUTHOR + DATE */}
+        <div className="blog-detail-meta">
+          <span>By {blog.Author_Name}</span>
+          <span>{new Date(blog.publishedAt).toDateString()}</span>
+        </div>
+
+        {/*  CATEGORY */}
+        <div className="blog-category-container">
+          {blog.blog_categories.map((cat: any) => (
+            <span key={cat.id} className="blog-category">
+              {cat.Blog_Category}
+            </span>
+          ))}
+        </div>
+
+        {/*  CONTENT */}
+        <p className="blog-detail-text">{blog.Content}</p>
+      </div>
     </div>
   )
 }
