@@ -3,6 +3,7 @@ import { useParams } from "react-router"
 import { useBlog } from "../context/BlogContext"
 
 import "../styles/form.css"
+import { renderMDtext } from "../utils/textUtils"
 
 export default function BlogDetail() {
   const { id } = useParams()
@@ -15,7 +16,7 @@ export default function BlogDetail() {
   useEffect(() => {
     // ✅ If context empty → fallback API call
     if (!activeBlog && id) {
-      fetch(`https://nems-api.roundlogics.com/api/blogs/${id}?populate=*`)
+      fetch(`https://nems-api.roundlogics.com/api/blogs/${blog.Cover_Title}?populate=*`)
         .then((res) => res.json())
         .then((data) => {
           setBlog(data.data)
@@ -60,7 +61,8 @@ export default function BlogDetail() {
         </div>
 
         {/*  CONTENT */}
-        <p className="blog-detail-text">{blog.Content}</p>
+        
+        <p className="blog-detail-text">{renderMDtext(blog.Content)}</p>
       </div>
     </div>
   )

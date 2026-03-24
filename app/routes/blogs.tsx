@@ -25,11 +25,11 @@ export default function Blogs() {
       <div className="blogs-grid">
         {blogs.map((blog: any) => (
           <div
-            key={blog.id}
+            key={blog.Cover_Title}
             className="blog-card group"
             onClick={() => {
               setActiveBlog(blog) //  store in Context
-              navigate(`/blogs/${blog.id}`) // clean URL
+              navigate(`/blogs/${blog.Cover_Title.replaceAll(" ", "-")}`) // clean URL
             }}
           >
             {/*  IMAGE */}
@@ -66,3 +66,4 @@ export default function Blogs() {
     </div>
   )
 }
+ 
