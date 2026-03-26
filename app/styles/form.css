@@ -190,16 +190,4 @@
   @apply mt-4 text-lg leading-relaxed text-gray-700;
 }
 
-/* .blog-card {
-  @apply relative overflow-hidden rounded-2xl border border-gray-200 bg-white/70 backdrop-blur-lg transition-all duration-500;
-}
 
-.blog-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.blog-card:hover .blog-image {
-  transform: scale(1.1);
-  transition: transform 0.6s ease;
-} */
